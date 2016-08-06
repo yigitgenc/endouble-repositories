@@ -1,0 +1,44 @@
+{
+    "type": "library",
+    "name": "endouble/repositories",
+    "homepage": "https://endouble.com",
+    "version": "1.0.0",
+    "description": "Repository Pattern Implementation for Laravel 5.2",
+    "keywords": [
+        "repository",
+        "repositories",
+        "laravel",
+        "eloquent",
+        "database"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yigit Genc",
+            "email": "yigidix@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6",
+        "illuminate/database": "^5.2.37",
+        "illuminate/pagination": "^5.2.37"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Config\\": "config",
+            "Endouble\\Repositories\\": "src"
+        },
+        "files": ["config/database.php"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
