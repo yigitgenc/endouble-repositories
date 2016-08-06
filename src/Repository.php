@@ -70,8 +70,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param array $columns
-     * @return mixed
+     * @inheritdoc
      */
     public function all($columns = ['*'])
     {
@@ -79,9 +78,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param $id
-     * @param array $columns
-     * @return mixed
+     * @inheritdoc
      */
     public function find($id, $columns = ['*'])
     {
@@ -89,21 +86,15 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param $field
-     * @param $value
-     * @param array $columns
-     * @return mixed
+     * @inheritdoc
      */
     public function findBy($field, $value, $columns = ['*'])
     {
         return $this->model->where($field, $value)->get($columns);
     }
 
-
     /**
-     * @param int $perPage
-     * @param array $columns
-     * @return mixed
+     * @inheritdoc
      */
     public function paginate($perPage = 15, $columns = ['*'])
     {
@@ -111,17 +102,17 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model
-     * @return bool
+     * @inheritdoc
      */
     public function save(Model $model)
     {
-        return $model->save();
+        $model->save();
+
+        return (object) $model->getAttributes();
     }
 
     /**
-     * @param array $data
-     * @return bool
+     * @inheritdoc
      */
     public function insert(array $data)
     {
@@ -129,9 +120,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param array $data
-     * @param $id
-     * @return mixed
+     * @inheritdoc
      */
     public function update(array $data, $id)
     {
@@ -139,8 +128,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * @inheritdoc
      */
     public function delete($id)
     {
@@ -150,6 +138,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * @param $source
      * @return Repository
+     *
      * @throws \Endouble\Repositories\RepositoryException
      */
     public function addSource($source)
@@ -170,6 +159,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * @param $source
      * @return Repository
+     *
      * @throws \Endouble\Repositories\RepositoryException
      */
     public function removeSource($source)
@@ -194,6 +184,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * @param $source
      * @return null
+     *
      * @throws \Endouble\Repositories\RepositoryException
      */
     public function setSource($source)
