@@ -42,34 +42,6 @@ abstract class Repository implements RepositoryInterface
     abstract protected function model();
 
     /**
-     * Creates new class from the model method,
-     * throws `RepositoryException` if it is not an instance of
-     * `\Illuminate\Database\Eloquent\Model`
-     *
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     * @throws \Endouble\Repositories\RepositoryException
-     */
-    private function setModel()
-    {
-        $model = $this->model();
-        $model = new $model();
-
-        $model->setConnection($this->source);
-
-        try {
-            if ( !$model instanceof Model) {
-                throw new RepositoryException("{$this->model()} class must be a instance of 
-                Illuminate\\Database\\Eloquent\\Model");
-            }
-        } catch (RepositoryException $e) {
-            die($e->getMessage() . PHP_EOL);
-        }
-
-        return $this->model = $model->newQuery();
-    }
-
-    /**
      * @inheritdoc
      */
     public function all($columns = ['*'])
@@ -161,6 +133,34 @@ abstract class Repository implements RepositoryInterface
         }
 
         return $this->model->findOrFail($id)->delete();
+    }
+
+    /**
+     * Creates new class from the model method,
+     * throws `RepositoryException` if it is not an instance of
+     * `\Illuminate\Database\Eloquent\Model`
+     *
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     * @throws \Endouble\Repositories\RepositoryException
+     */
+    private function setModel()
+    {
+        $model = $this->model();
+        $model = new $model();
+
+        $model->setConnection($this->source);
+
+        try {
+            if ( !$model instanceof Model) {
+                throw new RepositoryException("{$this->model()} class must be a instance of 
+                Illuminate\\Database\\Eloquent\\Model");
+            }
+        } catch (RepositoryException $e) {
+            die($e->getMessage() . PHP_EOL);
+        }
+
+        return $this->model = $model->newQuery();
     }
 
     /**
