@@ -26,7 +26,9 @@ $capsule->bootEloquent();
 ### Setup Data Sources
 
 Load `VacancyRepository` class, then add data sources and set one 
-which you would like to use. You can change your data source anytime using
+which you would like to use. 
+
+You can change your data source anytime using
  `$vacancyRepository->setSource($source);` method.
 
 ```
