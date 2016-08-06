@@ -122,16 +122,44 @@ abstract class Repository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function update(array $data, $id)
+    public function update(array $data, $id, $reflect = false)
     {
+        if ($reflect) {
+            $currentConnection = $this->model->getCurrentConnection();
+
+            foreach ($this->sources as $source) {
+                $this->model->setConnection($source);
+                $this->model->findOrFail($id)->update($data);
+            }
+
+            // Set changed connection during reflection with previous one.
+            $this->model->setConnection($currentConnection);
+
+            return true;
+        }
+
         return $this->model->findOrFail($id)->update($data);
     }
 
     /**
      * @inheritdoc
      */
-    public function delete($id)
+    public function delete($id, $reflect = false)
     {
+        if ($reflect) {
+            $currentConnection = $this->model->getCurrentConnection();
+
+            foreach ($this->sources as $source) {
+                $this->model->setConnection($source);
+                $this->model->findOrFail($id)->delete();
+            }
+
+            // Set changed connection during reflection with previous one.
+            $this->model->setConnection($currentConnection);
+
+            return true;
+        }
+
         return $this->model->findOrFail($id)->delete();
     }
 
