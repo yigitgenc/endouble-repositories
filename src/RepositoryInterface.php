@@ -41,7 +41,7 @@ interface RepositoryInterface
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @return bool
+     * @return object
      */
     public function save(Model $model);
 
@@ -53,37 +53,16 @@ interface RepositoryInterface
 
     /**
      * @param array $data
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @param bool $reflect
+     * @return bool
      */
-    public function update(array $data, $id);
+    public function update(array $data, $id, $reflect);
 
     /**
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @param bool $reflect
+     * @return bool
      */
-    public function delete($id);
-
-    /**
-     * @param $source
-     * @return null
-     */
-    public function addSource($source);
-
-    /**
-     * @param $source
-     * @return null
-     */
-    public function removeSource($source);
-
-    /**
-     * @param $source
-     * @return null
-     */
-    public function setSource($source);
-
-    /**
-     * @return array
-     */
-    public function getSources();
+    public function delete($id, $reflect);
 }
