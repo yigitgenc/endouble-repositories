@@ -12,7 +12,7 @@ Install dependencies using <a href="https://getcomposer.org" target="_blank">com
 At first, add connections using `Illuminate\Database\Capsule\Manager`
 
 ```
-use use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Config\Database;
 
 $capsule = new Capsule;
