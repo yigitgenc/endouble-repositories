@@ -136,6 +136,7 @@ abstract class Repository implements RepositoryInterface
      *
      *
      * @return \Illuminate\Database\Eloquent\Builder
+     *
      * @throws \Endouble\Repositories\RepositoryException
      */
     private function setModel()
