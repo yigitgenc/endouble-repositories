@@ -72,29 +72,29 @@ $vacancy = new Vacancy($data);
 $vacancyRepository->save($vacancy);
 ```
 
-#### all($columns = ['*'])
+#### all($columns = ['*']): mixed
 
 `$vacancyRepository->all();`
 
-#### find($id, $columns = ['*'])
+#### find($id, $columns = ['*']): mixed
 
 `$vacancyRepository->find($id);`
 
-#### findBy($field, $value, $columns = ['*'])
+#### findBy($field, $value, $columns = ['*']): mixed
 
 `$vacancyRepository->find($field, $value);`
 
-#### paginate($perPage = 15, $columns = ['*'])
+#### paginate($perPage = 15, $columns = ['*']): mixed
 
 `$vacancyRepository->paginate(20);`
 
-#### update(array $data, $id, $reflect = false)
+#### update(array $data, $id, $reflect = false): object
 
 `$vacancyRepository->update($data, $id);`
 
 > Use `$reflect = true` to apply this action to the other sources.
 
-#### delete($id, $reflect = false)
+#### delete($id, $reflect = false): object
 
 `$vacancyRepository->delete($id);`
 
