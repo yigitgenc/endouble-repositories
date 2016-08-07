@@ -53,7 +53,7 @@ To get data sources, use `$vacancyRepository->getSources();`
 Let's define a dummy array first.
 ```
 $data = [
-    "title" => "Another Vacancy",
+    "title" => "Example Vacancy",
     "content" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "description" => "This is a description."
 ];
@@ -89,19 +89,19 @@ $vacancyRepository->save($vacancy);
 
 `$vacancyRepository->paginate(20);`
 
-#### update(array $data, $id)
+#### update(array $data, $id, $reflect = false)
 
 `$vacancyRepository->update($data, $id);`
 
-#### delete($id)
+#### delete($id, $reflect = false)
 
 `$vacancyRepository->delete($id);`
 
-### Testing
+## Testing
 
 `composer exec phpunit test`
 
-### About The Author
+## About The Author
 
 - <a href="https://github.com/yigitgenc" target="_blank">Github</a>
 - <a href="https://linkedin.com/in/yigitgenc" target="_blank">LinkedIn</a>
