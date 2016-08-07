@@ -71,6 +71,7 @@ abstract class Repository implements RepositoryInterface
      */
     public function save(Model $model)
     {
+        $model->setConnection($this->source);
         $model->save();
 
         return (object) $model->getAttributes();
