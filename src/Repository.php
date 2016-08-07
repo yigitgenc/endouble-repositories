@@ -91,15 +91,15 @@ abstract class Repository implements RepositoryInterface
     public function update(array $data, $id, $reflect = false)
     {
         if ($reflect) {
-            $currentConnection = $this->model->getCurrentConnection();
+            $currentSource = $this->source;
 
             foreach ($this->sources as $source) {
-                $this->model->setConnection($source);
+                $this->setSource($source);
                 $this->model->findOrFail($id)->update($data);
             }
 
             // Set changed connection during reflection with previous one.
-            $this->model->setConnection($currentConnection);
+            $this->setSource($currentSource);
 
             return true;
         }
@@ -113,15 +113,15 @@ abstract class Repository implements RepositoryInterface
     public function delete($id, $reflect = false)
     {
         if ($reflect) {
-            $currentConnection = $this->model->getCurrentConnection();
+            $currentSource = $this->source;
 
             foreach ($this->sources as $source) {
-                $this->model->setConnection($source);
+                $this->setSource($source);
                 $this->model->findOrFail($id)->delete();
             }
 
             // Set changed connection during reflection with previous one.
-            $this->model->setConnection($currentConnection);
+            $this->setSource($currentSource);
 
             return true;
         }
