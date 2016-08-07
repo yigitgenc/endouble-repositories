@@ -17,6 +17,11 @@ class VacancyRepositoryTest extends TestCase
     private $capsule;
 
     /**
+     * @var VacancyRepository $instance
+     */
+    private $instance;
+
+    /**
      * Example data.
      *
      * @var array $data
