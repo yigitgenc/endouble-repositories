@@ -58,11 +58,11 @@ $data = [
 ];
 ```
 
-#### insert(array $data)
+#### insert(array $data): bool
 
 `$vacancyRepository->insert($data);`
 
-#### save(array $data)
+#### save(array $data): object
 
 ```
 ...
@@ -88,13 +88,13 @@ $vacancyRepository->save($vacancy);
 
 `$vacancyRepository->paginate(20);`
 
-#### update(array $data, $id, $reflect = false): object
+#### update(array $data, $id, $reflect = false): bool
 
 `$vacancyRepository->update($data, $id);`
 
 > Use `$reflect = true` to apply this action to the other sources.
 
-#### delete($id, $reflect = false): object
+#### delete($id, $reflect = false): bool
 
 `$vacancyRepository->delete($id);`
 
