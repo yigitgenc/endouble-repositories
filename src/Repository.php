@@ -19,19 +19,12 @@ abstract class Repository implements RepositoryInterface
     /**
      * @var array $sources
      */
-    private $sources = ['default'];
+    private $sources = [];
 
     /**
      * @var string $source;
      */
     private $source;
-
-    /**
-     * Repository constructor.
-     */
-    public function __construct() {
-        $this->setSource('default');
-    }
 
     /**
      * Define Model class name.
@@ -193,9 +186,7 @@ abstract class Repository implements RepositoryInterface
     public function removeSource($source)
     {
         try {
-            if ($source == 'default') {
-                throw new RepositoryException("You cannot remove the default source!");
-            } else if ($this->source == $source) {
+            if ($this->source == $source) {
                 throw new RepositoryException("You cannot remove the selected source!");
             } else if (in_array($source, $this->sources)) {
                 $this->sources[$source] = null;
