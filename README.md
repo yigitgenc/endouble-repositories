@@ -16,7 +16,6 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Config\Database;
 
 $capsule = new Capsule;
-$capsule->addConnection(Database::getConfig('test')); // Set as a default connection
 $capsule->addConnection(Database::getConfig('albert'), 'albert');
 $capsule->addConnection(Database::getConfig('booking'), 'booking');
 ...
@@ -93,9 +92,13 @@ $vacancyRepository->save($vacancy);
 
 `$vacancyRepository->update($data, $id);`
 
+> Use `$reflect = true` to apply this action to the other sources.
+
 #### delete($id, $reflect = false)
 
 `$vacancyRepository->delete($id);`
+
+> Use `$reflect = true` to apply this action to the other sources.
 
 ## Testing
 
