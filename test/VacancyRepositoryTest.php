@@ -33,7 +33,7 @@ class VacancyRepositoryTest extends TestCase
     ];
 
     /**
-     * Setup test database for testing.
+     * Setup test database and data source for testing.
      *
      */
     public function setUp()
@@ -43,6 +43,18 @@ class VacancyRepositoryTest extends TestCase
         $this->capsule = new Capsule;
         $this->capsule->bootEloquent();
         $this->capsule->addConnection(Database::getConfig('test'));
+
+        $this->instance = new VacancyRepository();
+        $this->instance->addSource('default')
+            ->setSource('default');
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        $this->capsule = null;
+        $this->instance = null;
     }
 
     /**
@@ -53,16 +65,15 @@ class VacancyRepositoryTest extends TestCase
     {
         $stub = $this->createMock(VacancyRepository::class);
 
+        $vacancy = new Vacancy($this->data);
+
         $stub->expects($this->any())
             ->method('save')
             ->with($this->isType('object'))
-            ->willReturn(true);
-
-        $vacancy = new Vacancy($this->data);
-        $vacancyRepository = new VacancyRepository();
+            ->willReturn($this->instance->save($vacancy));
 
         $this->assertEquals(
-            $vacancyRepository->save($vacancy),
+            $this->instance->save($vacancy),
             $stub->save($vacancy)
         );
 
@@ -71,7 +82,7 @@ class VacancyRepositoryTest extends TestCase
         $vacancy->content = 'Foo bar baz';
 
         $this->assertEquals(
-            $vacancyRepository->save($vacancy),
+            $this->instance->save($vacancy),
             $stub->save($vacancy)
         );
     }
@@ -109,7 +120,6 @@ class VacancyRepositoryTest extends TestCase
 
         $stub = $this->createMock(VacancyRepository::class);
         $vacancy = new Vacancy();
-        $vacancyRepository = new VacancyRepository();
 
         $stub->expects($this->once())
             ->method('insert')
@@ -118,9 +128,9 @@ class VacancyRepositoryTest extends TestCase
 
 
         $vacancy->setConnection($dataSource);
-        $vacancyRepository->addSource($dataSource);
+        $this->instance->addSource($dataSource);
 
-        $this->assertContains($dataSource, $vacancyRepository->getSources());
+        $this->assertContains($dataSource, $this->instance->getSources());
 
         $this->assertEquals(
             $vacancy->insert($this->data),
@@ -177,7 +187,9 @@ class VacancyRepositoryTest extends TestCase
     public function testFindBy()
     {
         $stub = $this->createMock(VacancyRepository::class);
-        $vacancy = new Vacancy();
+        $vacancy = (new Vacancy())->newQuery()
+            ->where('title', $this->data['title'])
+            ->get();
 
         $stub->expects($this->once())
             ->method('findBy')
@@ -185,14 +197,10 @@ class VacancyRepositoryTest extends TestCase
                 $this->isType('string'),
                 $this->isType('string'),
                 $this->isType('array')
-            )->willReturn(
-                $vacancy->newQuery()
-                    ->where('title', $this->data['title'])
-                    ->get()
-            );
+            )->willReturn($vacancy);
 
         $this->assertEquals(
-            $vacancy->newQuery()->where('title', $this->data['title'])->get(),
+            $vacancy,
             $stub->findBy('title', $this->data['title'])
         );
     }
@@ -222,7 +230,9 @@ class VacancyRepositoryTest extends TestCase
     public function testUpdate()
     {
         $stub = $this->createMock(VacancyRepository::class);
-        $vacancy = new Vacancy();
+        $vacancy = (new Vacancy())->newQuery()
+            ->find(1)
+            ->update(['title' => 'Another Awesome Vacancy']);
 
         $stub->expects($this->once())
             ->method('update')
@@ -230,7 +240,7 @@ class VacancyRepositoryTest extends TestCase
             ->willReturn(true);
 
         $this->assertEquals(
-            $vacancy->newQuery()->find(1)->update(['title' => 'Another Awesome Vacancy']),
+            $vacancy,
             $stub->update(['title' => 'Another Awesome Vacancy'], 1)
         );
     }
@@ -243,18 +253,17 @@ class VacancyRepositoryTest extends TestCase
         $string = "baz";
 
         $stub = $this->createMock(VacancyRepository::class);
-        $vacancy = new Vacancy();
-        $result = $vacancy->newQuery()
+        $vacancy = (new Vacancy())->newQuery()
             ->where('content', 'like', "%{$string}%")
-            ->get();
+            ->get();;
 
         $stub->expects($this->once())
             ->method('searchInContent')
             ->with($this->isType('string'))
-            ->willReturn($result);
+            ->willReturn($vacancy);
 
         $this->assertEquals(
-            $result,
+            $vacancy,
             $stub->searchInContent($string)
         );
     }
