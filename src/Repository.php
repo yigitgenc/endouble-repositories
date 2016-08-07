@@ -167,7 +167,7 @@ abstract class Repository implements RepositoryInterface
     public function addSource($source)
     {
         try {
-            if (!in_array($source, $this->sources) && $source != 'default') {
+            if (!in_array($source, $this->sources)) {
                 $this->sources[] = $source;
             } else {
                 throw new RepositoryException("{$source} already exists!");
