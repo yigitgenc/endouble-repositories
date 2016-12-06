@@ -24,35 +24,35 @@ $capsule->bootEloquent();
 
 ### Setup Data Sources
 
-Load `VacancyRepository` class, then add data sources and set one 
+Load `ExampleRepository` class, then add data sources and set one 
 which you would like to use. 
 
 You can change your data source anytime using
- `$vacancyRepository->setSource($source);` method.
+ `$exampleRepository->setSource($source);` method.
 
 ```
 ...
-use App\Repositories\VacancyRepository;
+use App\Repositories\ExampleRepository;
 
-$vacancyRepository = new VacancyRepository();
-$vacancyRepository->addSource('test')
+$exampleRepository = new ExampleRepository();
+$exampleRepository->addSource('test')
     ->addSource('albert')
     ...
     ->addSource('booking');
     
-$vacancyRepository->setSource('booking');
+$exampleRepository->setSource('booking');
 ```
 
-Or remove a data source using `$vacancyRepository->removeSource($source);`
+Or remove a data source using `$exampleRepository->removeSource($source);`
 
-To get data sources, use `$vacancyRepository->getSources();`
+To get data sources, use `$exampleRepository->getSources();`
 
 ### Querying
 
 Let's define a dummy array first.
 ```
 $data = [
-    "title" => "Example Vacancy",
+    "title" => "Example",
     "content" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "description" => "This is a description."
 ];
@@ -60,43 +60,43 @@ $data = [
 
 #### insert(array $data): bool
 
-`$vacancyRepository->insert($data);`
+`$exampleRepository->insert($data);`
 
 #### save(array $data): object
 
 ```
 ...
-use App\Models\Vacancy;
+use App\Models\Example;
 
-$vacancy = new Vacancy($data);
-$vacancyRepository->save($vacancy);
+$example = new Example($data);
+$exampleRepository->save($example);
 ```
 
 #### all($columns = ['*']): mixed
 
-`$vacancyRepository->all();`
+`$exampleRepository->all();`
 
 #### find($id, $columns = ['*']): mixed
 
-`$vacancyRepository->find($id);`
+`$exampleRepository->find($id);`
 
 #### findBy($field, $value, $columns = ['*']): mixed
 
-`$vacancyRepository->find($field, $value);`
+`$exampleRepository->find($field, $value);`
 
 #### paginate($perPage = 15, $columns = ['*']): mixed
 
-`$vacancyRepository->paginate(20);`
+`$exampleRepository->paginate(20);`
 
 #### update(array $data, $id, $reflect = false): bool
 
-`$vacancyRepository->update($data, $id);`
+`$exampleRepository->update($data, $id);`
 
 > Use `$reflect = true` to apply this action to the other sources.
 
 #### delete($id, $reflect = false): bool
 
-`$vacancyRepository->delete($id);`
+`$exampleRepository->delete($id);`
 
 > Use `$reflect = true` to apply this action to the other sources.
 

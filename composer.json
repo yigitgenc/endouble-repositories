@@ -1,7 +1,7 @@
 {
     "type": "library",
-    "name": "endouble/repositories",
-    "homepage": "https://endouble.com",
+    "name": "yigidix/laravel-repositories",
+    "homepage": "https://github.com/yigitgenc/laravel-repositories",
     "version": "1.0.0",
     "description": "Repository Pattern Implementation for Laravel 5.2",
     "keywords": [

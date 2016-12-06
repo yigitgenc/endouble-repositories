@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Vacancy Model
+ * Class Example Model
  *
  * @package App
  */
-class Vacancy extends Model
+class Example extends Model
 {
     /**
      * @var array $fillable
@@ -22,28 +22,28 @@ class Vacancy extends Model
     public $timestamps = false;
 
     /**
-     * The id of the vacancy
+     * The id of the example
      *
      * @var integer $id
      */
     public $id;
 
     /**
-     * The vacancy title
+     * The example title
      *
      * @var string $title
      */
     public $title;
 
     /**
-     * The vacancy content/description
+     * The example content/description
      *
      * @var string $content
      */
     public $content;
 
     /**
-     * The vacancy description
+     * The example description
      *
      * @var string $description
      */

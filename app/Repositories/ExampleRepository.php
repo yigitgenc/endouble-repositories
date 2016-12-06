@@ -5,11 +5,11 @@ namespace App\Repositories;
 use Endouble\Repositories\Repository;
 
 /**
- * Class VacancyRepository
+ * Class ExampleRepository
  *
  * @package App\Repositories
  */
-class VacancyRepository extends Repository
+class ExampleRepository extends Repository
 {
     /**
      * Define your model here.
@@ -18,7 +18,7 @@ class VacancyRepository extends Repository
      */
     protected function model()
     {
-        return 'App\Models\Vacancy';
+        return 'App\Models\Example';
     }
 
     /**
