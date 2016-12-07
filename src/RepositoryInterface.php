@@ -1,13 +1,13 @@
 <?php
 
-namespace Endouble\Repositories;
+namespace Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Interface RepositoryInterface
  *
- * @package Endouble\Repositories
+ * @package Repositories
  */
 interface RepositoryInterface
 {

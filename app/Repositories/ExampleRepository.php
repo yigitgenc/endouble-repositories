@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Endouble\Repositories\Repository;
+use Repositories\Repository;
 
 /**
  * Class ExampleRepository

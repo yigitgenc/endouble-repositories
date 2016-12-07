@@ -1,6 +1,6 @@
 {
     "type": "library",
-    "name": "yigidix/laravel-repositories",
+    "name": "yigitgenc/laravel-repositories",
     "homepage": "https://github.com/yigitgenc/laravel-repositories",
     "version": "1.0.0",
     "description": "Repository Pattern Implementation for Laravel 5.2",
@@ -30,7 +30,7 @@
         "psr-4": {
             "App\\": "app",
             "Config\\": "config",
-            "Endouble\\Repositories\\": "src"
+            "Repositories\\": "src"
         },
         "files": ["config/database.php"]
     },

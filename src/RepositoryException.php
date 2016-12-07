@@ -1,12 +1,12 @@
 <?php
 
-namespace Endouble\Repositories;
+namespace Repositories;
 
 use Exception;
 
 /**
  * Class RepositoryException
  *
- * @package Endouble\Repositories
+ * @package Repositories
  */
 class RepositoryException extends Exception {}

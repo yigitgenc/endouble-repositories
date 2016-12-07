@@ -1,13 +1,13 @@
 <?php
 
-namespace Endouble\Repositories;
+namespace Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Abstract Class Repository
  *
- * @package Endouble\Repositories
+ * @package Repositories
  */
 abstract class Repository implements RepositoryInterface
 {
@@ -137,7 +137,7 @@ abstract class Repository implements RepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder
      *
-     * @throws \Endouble\Repositories\RepositoryException
+     * @throws \Repositories\RepositoryException
      */
     private function setModel()
     {
@@ -162,7 +162,7 @@ abstract class Repository implements RepositoryInterface
      * @param $source
      * @return Repository
      *
-     * @throws \Endouble\Repositories\RepositoryException
+     * @throws \Repositories\RepositoryException
      */
     public function addSource($source)
     {
@@ -183,7 +183,7 @@ abstract class Repository implements RepositoryInterface
      * @param $source
      * @return Repository
      *
-     * @throws \Endouble\Repositories\RepositoryException
+     * @throws \Repositories\RepositoryException
      */
     public function removeSource($source)
     {
@@ -206,7 +206,7 @@ abstract class Repository implements RepositoryInterface
      * @param $source
      * @return null
      *
-     * @throws \Endouble\Repositories\RepositoryException
+     * @throws \Repositories\RepositoryException
      */
     public function setSource($source)
     {
